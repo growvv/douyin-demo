@@ -55,6 +55,7 @@ func DelRelation(userId, toUserId int64) bool {
 	return true
 }
 
+// SelectFollowList get follow info_list
 func SelectFollowList(id int64) (res []int64) {
 	var Temp []model.RelationDB
 	config.Db.Where("user_id = ?", id).Find(&Temp)
@@ -64,15 +65,17 @@ func SelectFollowList(id int64) (res []int64) {
 	return res
 }
 
+// SelectFollowerList get fans info_list
 func SelectFollowerList(id int64) (res []int64) {
 	var Temp []model.RelationDB
-	config.Db.Where("to_user_id = ?", id).Find(&Temp)
+	config.Db.Where("to_user_id = ?", id).Find(&Temp) //以被关注者角度
 	for _, v := range Temp {
-		res = append(res, v.UserId)
+		res = append(res, v.UserId)  //发起关注的人 即粉丝id
 	}
 	return res
 }
 
+// SelectUserInfoById get info by id
 func SelectUserInfoById(id int64) model.UserDB {
 	var res model.UserDB
 	config.Db.Where("id = ?", id).Find(&res)

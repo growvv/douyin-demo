@@ -1,7 +1,7 @@
 package model
 
 type UserDB struct {
-	Id            uint64 `gorm:"column:id;autoIncrement;primaryKey"`
+	Id            uint64 `gorm:"column:id;autoIncrement;primaryKey,index:unique"`
 	Name          string `gorm:"column:name"`
 	Username      string `gorm:"column:username"`
 	Password      string `gorm:"column:password"`

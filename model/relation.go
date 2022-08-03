@@ -12,8 +12,8 @@ import "time"
 
 type RelationDB struct {
 	Id         int64     `gorm:"column:id;autoIncrement;primaryKey"`
-	UserId     int64       `gorm:"column:user_id"`     //关注者
-	ToUserId   int64       `gorm:"column:to_user_id"`  //被关注
+	UserId     int64       `gorm:"index:user2user,column:user_id"`     //关注者
+	ToUserId   int64       `gorm:"index:user2user,column:to_user_id"`  //被关注
 	CreateTime time.Time `gorm:"column:create_time"`
 }
 

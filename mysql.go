@@ -11,7 +11,7 @@ import (
 	"gorm.io/gorm/schema"
 )
 
-func initMysql() {
+func InitMysql() {
 	var dsn = fmt.Sprintf("%s:%s@%s", config.MysqlUsername, config.MysqlPassword, config.MysqlUrl)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{SingularTable: true},

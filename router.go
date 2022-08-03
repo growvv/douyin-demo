@@ -11,7 +11,7 @@ import (
 
 )
 
-func initRouter(r *gin.Engine) {
+func InitRouter(r *gin.Engine) {
 	// public directory is used to serve static resources
 	r.Static("/static", "./public")
 	r.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))

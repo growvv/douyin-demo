@@ -39,8 +39,8 @@ func main() {
 	r := gin.New()
 	r.Use(logger.GinLogger(), logger.GinRecovery(true)) //记录日志
 
-	initRouter(r)
-	initMysql()
+	InitRouter(r)
+	InitMysql()
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
