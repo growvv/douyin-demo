@@ -34,13 +34,14 @@ func Register(name, password string) (uint64, bool) {
 }
 
 func GenerateToken(Id uint64) (string, error) {
-	claims := Claims{Id, jwt.StandardClaims{
-		ExpiresAt: time.Now().Unix() + 2*60*60,
-		Issuer:    "Leospard",
-	},
+	claims := Claims{Id,
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Unix() + 2*60*60, //过期时间 2小时
+			Issuer: "Leospard", //签发人
+		},
 	}
-	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	token, err := tokenClaims.SignedString(jwtSecret)
+	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256, claims) //指定签名方法
+	token, err := tokenClaims.SignedString(jwtSecret) //使用指定的secret生成token
 	return token, err
 }
 
